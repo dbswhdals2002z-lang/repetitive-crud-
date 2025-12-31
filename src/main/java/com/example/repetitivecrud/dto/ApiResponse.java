@@ -26,7 +26,7 @@ public class ApiResponse<T> {
         return status;
     }
 
-    public T data() {
+    public T getData() {
         return data;
     }
 }
