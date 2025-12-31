@@ -21,21 +21,22 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    /// 회원 생성
+    /// 회원 생성 -> 회원가입 API
     @PostMapping
-    public ResponseEntity<ApiResponse<MemberCreateResponse>> createMemberApi(@RequestBody MemberCreateRequest memberCreateRequest) {
-        String name = memberCreateRequest.getName();
-        log.info("controller - 회원 생성, name: {}", name);
+    public ResponseEntity<ApiResponse<MemberRegisterResponse>> memberRegisterApi(@RequestBody MemberRegisterRequest memberRegisterRequest) {
+//        String name = memberCreateRequest.getName();
+        log.info("email: {}", memberRegisterRequest.getEmail());
+        log.info("password: {}", memberRegisterRequest.getPassword());
 
         // 1. 서비스 호출 (서비스에서 반환 데이터 준비)
         // 응답 dto 생성
-        MemberCreateResponse responseDto = memberService.createMember(memberCreateRequest);
+        MemberRegisterResponse responseDto = memberService.registerMember(memberRegisterRequest);
 
         // 2. Api 래퍼 생성 (ApiResponse 만들기)
-        ApiResponse<MemberCreateResponse> apiResponse = new ApiResponse("created", 201, responseDto);
+        ApiResponse<MemberRegisterResponse> apiResponse = new ApiResponse("created", 201, responseDto);
 
         // 3. ResponseEntity 생성 (ResponseEntity<> 만들기 -> ResponseEntity 반환)
-        ResponseEntity<ApiResponse<MemberCreateResponse>> response = new ResponseEntity<>(apiResponse, HttpStatus.CREATED); // (201 CREATED)
+        ResponseEntity<ApiResponse<MemberRegisterResponse>> response = new ResponseEntity<>(apiResponse, HttpStatus.CREATED); // (201 CREATED)
         return response;
 
 

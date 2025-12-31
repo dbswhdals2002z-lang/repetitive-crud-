@@ -13,4 +13,10 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     // 다건조회에서 사용하는 메서드
     List<Member> findByIsDeletedFalse();
+
+    // 중복 이메일 여부 조회
+    Boolean existsByEmail(String email);
+
+    // 회원조회할때 사용하는 메서드 (회원을 이메일로 조회)
+    Optional<Member> findByEmail(String email);
 }

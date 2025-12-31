@@ -1,12 +1,12 @@
 package com.example.repetitivecrud.dto;
 
-public class MemberCreateResponse {
+public class MemberRegisterResponse {
 
     // 속
     private Long id;
 
     // 생
-    public MemberCreateResponse(Long id) {
+    public MemberRegisterResponse(Long id) {
         this.id = id;
     }
 

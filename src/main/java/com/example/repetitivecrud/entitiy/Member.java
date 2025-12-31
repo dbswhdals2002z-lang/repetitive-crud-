@@ -8,6 +8,11 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "members")
 public class Member {
+    @Column(length = 200, nullable = false)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +33,10 @@ public class Member {
     protected Member() {
     } // JPA 기본 생성자
 
-    public Member(String name) {
+    public Member(String name, String email, String password) {
         this.name = name;
+        this.email = email;
+        this.password = password;
     }
 
 
@@ -62,5 +69,13 @@ public class Member {
     ///  회원 삭제처리를 위한 메서드
     public void setDeleted(boolean isDeleted) {
         this.isDeleted = isDeleted;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
